@@ -1,3 +1,4 @@
+
 java_binary(
     name = "echo_client",
     srcs = ["EchoClient.java"],
@@ -7,7 +8,7 @@ java_binary(
     ],
     deps = [
     #   ":transmission_object_java",
-    #   "//proto:transmission_object_java_proto",
+        "//proto:transmission_object_java_proto",
         "//proto:transceiver_java_proto", 
         "//proto:transceiver_java_proto_grpc",
         "//third_party:gson",

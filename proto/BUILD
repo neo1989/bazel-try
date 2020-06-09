@@ -35,13 +35,13 @@ go_proto_library(
     deps = [
         ":transmission_object_go_proto",
     ],
-    visibility = ["//server/echo_server:__pkg__"], 
+    visibility = ["//go:__pkg__"], 
 )
 
 java_proto_library(
     name = "transceiver_java_proto",
     deps = [":transceiver_proto"],
-    visibility = ["//client/echo_client:__subpackages__"],
+    visibility = ["//java:__subpackages__"],
 )
 
 load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
@@ -49,5 +49,5 @@ java_grpc_library(
     name = "transceiver_java_proto_grpc",
     srcs = [":transceiver_proto"],
     deps = [":transceiver_java_proto"],
-    visibility = ["//client/echo_client:__subpackages__"],
+    visibility = ["//java:__subpackages__"],
 )

@@ -57,3 +57,57 @@ http_archive(
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 grpc_java_repositories()
+
+http_archive(
+    name = "bazel_gazelle",
+    # strip_prefix = "bazel-gazelle-0.21.1",
+    sha256 = "cdb02a887a7187ea4d5a27452311a75ed8637379a1287d8eeb952138ea485f7d",
+    urls = [
+            "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.21.1/bazel-gazelle-v0.21.1.tar.gz"
+    ],
+)
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
+gazelle_dependencies()
+
+go_repository(
+    name = "org_golang_google_grpc",
+    build_file_proto_mode = "disable",
+    importpath = "google.golang.org/grpc",
+    sum = "h1:rRYRFMVgRv6E0D70Skyfsr28tDXIuuPZyWGMPdMcnXg=", 
+    version = "v1.27.0",
+)
+
+go_repository(
+    name = "org_golang_x_net",
+    importpath = "golang.org/x/net",
+    sum = "h1:oWX7TPOiFAMXLq8o0ikBYfCJVlRHBcsciT5bXOrH628=", 
+    version = "v0.0.0-20190311183353-d8887717615a",
+)
+
+go_repository(
+    name = "org_golang_x_text",
+    importpath = "golang.org/x/text",
+    sum = "h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=", 
+    version = "v0.3.0",
+)
+
+# git_repository(
+#     name = "org_golang_google_grpc",
+#     remote = "https://github.com/grpc/grpc-go.git",
+#     commit = "754ee590a4f386d0910d887f3b8776354042260b",
+# )
+# 
+# git_repository(
+#     name = "org_golang_x_text",
+#     remote = "https://github.com/golang/net.git",
+#     commit = "627f9648deb96c27737b83199d44bb5c1010cbcf",
+# )
+# 
+# git_repository(
+#     name = "org_golang_x_text",
+#     remote = "https://github.com/golang/text.git",
+#     commit = "f21a4dfb5e38f5895301dc265a8def02365cc3d0",
+# )
+# 
+# 

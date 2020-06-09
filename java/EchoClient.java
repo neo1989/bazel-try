@@ -1,7 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+
 import java.io.BufferedReader; 
 import java.io.InputStreamReader;
 
@@ -17,7 +19,6 @@ public class EchoClient {
         System.out.println("Spinning up the Echo Client in Java...");
 
         try {
-            final Socket socketToServer = new Socket("localhost", 1234);
 
             final BufferedReader commandLineInput = new BufferedReader(
                     new InputStreamReader(System.in)
@@ -35,10 +36,15 @@ public class EchoClient {
 
                 TransceiverGrpc.TransceiverBlockingStub stub = TransceiverGrpc.newBlockingStub(channel); 
                 EchoRequest request = EchoRequest.newBuilder()
-                    .setFromClient( TransmissionObject.newBuilder()
-                    .setMessage(inputFromUser) .setValue(3.145f) .build())
+                    .setFromClient(
+                        TransmissionObject.newBuilder()
+                            .setMessage(inputFromUser)
+                            .setValue(3.145f)
+                            .build())
                     .build();
+                System.out.println("A");
                 EchoResponse response = stub.echo(request);
+                System.out.println("B");
 
                 GsonBuilder builder = new GsonBuilder(); 
                 Gson gson = builder.create();
@@ -47,9 +53,7 @@ public class EchoClient {
                 System.out.println(gson.toJson(response));
 
                 channel.shutdownNow();
-
             }
-            socketToServer.close();
         } catch (Exception e) {
             System.err.println("Error: " + e); }
     } 
