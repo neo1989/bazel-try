@@ -1,0 +1,259 @@
+# All SpaceVim option below [option] section
+[options]
+# set spacevim theme. by default colorscheme layer is not loaded,
+# if you want to use more colorscheme, please load the colorscheme
+# layer
+  colorscheme = "meta5"
+  colorscheme_bg = "dark"
+# Disable guicolors in basic mode, many terminal do not support 24bit
+# true colors
+  enable_guicolors = true 
+# Disable statusline separator, if you want to use other value, please
+# install nerd fonts
+  statusline_separator = "nil"
+  statusline_inactive_separator = "bar"
+# statusline_separator = "arrow"
+# statusline_inactive_separator = "arrow"
+  enable_statusline_mode = true 
+  enable_statusline_display_mode = false
+  enable_statusline_bfpath = true
+  statusline_unicode_symbols = false
+
+  statusline_left_sections = [
+    'winnr',
+# 'filename',
+    'major mode',
+    'minor mode lighters',
+    'version control info'
+    ]
+
+  buffer_index_type = 4
+  windows_index_type = 3
+# default_indent = 4
+# expand_tab = false
+  enable_tabline_filetype_icon = false 
+# Enable vim compatible mode, avoid changing origin vim key bindings
+  vimcompatible = true
+
+  filemanager = "nerdtree"
+  filetree_direction = "left"
+  enable_vimfiler_gitstatus = true 
+
+  enable_neomake = false
+
+  bootstrap_before = "init#init"
+
+# Enable autocomplete layer
+[[layers]]
+  name = 'autocomplete'
+  auto-completion-return-key-behavior = "complete"
+  auto-completion-tab-key-behavior = "smart cycle"
+  auto-completion-delay = 10
+
+[[layers]]
+  name = "checkers"
+  show_cursor_error = false 
+  enable_neomake = false 
+
+[[layers]]
+  name = 'shell'
+  default_position = 'top'
+  default_height = 30
+
+[[layers]]
+  name = "core#statusline"
+
+[[layers]]
+  name = "lang#c"
+  clang_executable = "/usr/bin/gcc"
+  [layer.clang_std]
+    c = "c11"
+    cpp = "c++11"
+    objc = "c11"
+    objcpp = "c++1z"
+
+[[layers]]
+  name = "lang#python"
+
+[[layers]]
+  name = "lang#go"
+
+# [[layers]]
+#   name = "lang#java"
+
+[[layers]]
+  name = "lang#javascrip"
+
+[[layers]]
+  name = "lang#vue"
+
+[[layers]]
+  name = "lang#markdown"
+
+[[layers]]
+  name = "tools"
+
+[[layers]]
+  name = "tools#dash"
+
+[[layers]]
+  name = "tags"
+
+[[layers]]
+  name = "ui"
+
+[[layers]]
+  name = "fzf"
+
+[[layers]]
+  name = "VersionControl"
+
+[[layers]]
+  name = "debug"
+
+[[layers]]
+  name = "unite"
+
+[[layers]]
+  name = "core#statusline"
+  enable = true
+
+
+#------------------------------------------------
+# custom_plugins
+#------------------------------------------------
+
+# add the header information to the file
+[[custom_plugins]]
+  name = "alpertuna/vim-header"
+
+# avoid the cursor at the bottom ot top of the screen, default value=25%
+[[custom_plugins]]
+  name = "drzel/vim-scrolloff-fraction"
+
+# snippets in vim
+[[custom_plugins]]
+  name = "honza/vim-snippets"
+
+#  The plugin provides mappings to easily delete,
+#  change and add such surroundings in pairs.
+[[custom_plugins]]
+  name = "tpope/vim-surround"
+
+# nice monokai syntax highlight theme
+[[custom_plugins]]
+  name = "crusoexia/vim-monokai"
+
+# programming with server using vim
+# [[custom_plugins]]
+#   name = "zenbro/mirror.vim"
+
+# Repeat.vim remaps . in a way that plugins can tap into it.
+# unite-outline is a unite.vim's source which provides
+# your Vim's buffer with the outline view. 
+# [[custom_plugins]]
+#   name = "Shougo/unite-outline"
+
+# enhanced text object in vim
+[[custom_plugins]]
+  name = "wellle/targets.vim"
+
+# Displays function signatures from completions in the command line.
+# [[custom_plugins]]
+#   name = "Shougo/echodoc.vim"
+
+# enhanced highlighting for cpp in vim
+[[custom_plugins]]
+  name = "octol/vim-cpp-enhanced-highlight"
+
+# support vimL programming in vim
+[[custom_plugins]]
+  name = "vim-scripts/Vim-Support"
+
+# Repeat.vim remaps . in a way that plugins can tap into it
+[[custom_plugins]]
+  name = "tpope/vim-repeat"
+
+# Adds for file icons
+# [[custom_plugins]]
+#  name = "ryanoasis/vim-devicons"
+
+# display the number of matches while searching
+[[custom_plugins]]
+  name = "google/vim-searchindex"
+
+# switch between the source file and header file for c&c++
+[[custom_plugins]]
+  name = "ericcurtin/CurtineIncSw.vim"
+
+# run the compile file asychronously
+[[custom_plugins]]
+  name = "skywind3000/asyncrun.vim"
+
+# auto-insert the other half of bracket
+# [[custom_plugins]]
+#   name = "jiangmiao/auto-pairs"
+
+# vim plugin for pyTest
+# [[custom_plugins]]
+#   name = "alfredodeza/pytest.vim"
+
+# enhanced python syntax highlighting in vim
+[[custom_plugins]]
+  name = "vim-python/python-syntax"
+
+[[custom_plugins]]
+  name = "neo1989/meta5"
+  merged = 0
+
+[[custom_plugins]]
+  name = "google/vim-maktaba"
+  merged = 0
+
+[[custom_plugins]]
+  name = "google/vim-codefmt"
+  merged = 0
+
+[[custom_plugins]]
+  name = "google/vim-glaive"
+  merged = 0
+
+[[custom_plugins]]
+  name = "MarcWeber/vim-addon-mw-utils"
+  merged = 0
+
+[[custom_plugins]]
+  name = "tomtom/tlib_vim"
+  merged = 0
+
+[[custom_plugins]]
+  name = "garbas/vim-snipmate"
+  merged = 0
+
+[[custom_plugins]]
+  name = "honza/vim-snippets"
+  merged = 0
+
+[[custom_plugins]]
+  name = "bazelbuild/vim-bazel"
+  merged = 0
+
+[[custom_plugins]]
+  name = "bazelbuild/vim-ft-bzl"
+  merged = 0
+ 
+# [[custom_plugins]]
+#   name = "grailbio/bazel-compilation-database"
+#   merged = 0
+
+# [[custom_plugins]]
+#   name = "tpope/vim-classpath"
+#   merged = 0
+
+# [[custom_plugins]]
+#   name = "ycm-core/YouCompleteMe"
+#   merged = 0
+ 
+# [[custom_plugins]]
+#     name = "rdnetto/YCM-Generator"
+#     merged = 0
