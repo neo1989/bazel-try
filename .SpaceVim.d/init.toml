@@ -51,7 +51,7 @@
 
   bootstrap_before = "init#init"
 
-# enable_neomake = false
+  enable_neomake = false
 # enable_ale = true
 
   bootstrap_before = "init#init"
@@ -138,7 +138,7 @@
 
 # add the header information to the file
 [[custom_plugins]]
-  name = "alpertuna/vim-header"
+ name = "alpertuna/vim-header"
 
 # avoid the cursor at the bottom ot top of the screen, default value=25%
 [[custom_plugins]]

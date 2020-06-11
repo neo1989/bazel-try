@@ -4,10 +4,41 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strings"
+	"transceiver"
 	"transmission_object"
 
-	"github.com/golang/protobuf/proto"
+	// "github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 )
+
+type EchoServer struct{}
+
+func (es *EchoServer) Echo(context context.Context, request *transceiver.EchoRequest) (*transceiver.EchoResponse, error) {
+
+	log.Println("Message = " + (*request).FromClient.GetMessage())
+	log.Println("Value = " + fmt.Sprintf("%f", (*request).FromClient.GetValue()))
+
+	server_message := "Received from client: " + (*request).FromClient.GetMessage()
+	server_value := (*request).FromClient.Value * 2
+	from_server := transmission_object.TransmissionObject{
+		Message: server_message,
+		Value:   server_value,
+	}
+
+	return &transceiver.EchoResponse{
+		FromServer: &from_server,
+	}, nil
+}
+
+func (es *EchoServer) UpperCase(contest context.Context, request *transceiver.UpperCaseRequest) (*transceiver.UpperCaseResponse, error) {
+	log.Println("Original = " + (*request).GetOriginal())
+
+	return &transceiver.UpperCaseResponse{
+		UpperCased: strings.ToUpper((*request).GetOriginal()),
+	}, nil
+}
 
 func main() {
 	log.Println("Spinning up the Echo Server in Go...")
@@ -18,35 +49,11 @@ func main() {
 	}
 
 	defer listen.Close()
-	connection, error := listen.Accept()
-	if error != nil {
-		log.Panicln("Cannot accept a connection! Error: " + error.Error())
-	}
-	log.Println("Receiving on a new connection")
-	defer connection.Close()
-
 	defer log.Println("Connection now closed.")
-	buffer := make([]byte, 2048)
-	size, error := connection.Read(buffer)
+	grpc_server := grpc.NewServer()
+	transceiver.RegisterTransceiverServer(grpc_server, &EchoServer{})
+	error = grpc_server.Serve(listen)
 	if error != nil {
-		log.Println("Cannot read from the buffer! Error: " + error.Error())
+		log.Panicln("Unable to start serving! Error: " + error.Error())
 	}
-	data := buffer[:size]
-	transmissionObject := &transmission_object.TransmissionObject{}
-	error = proto.Unmarshal(data, transmissionObject)
-	if error != nil {
-		log.Panicln("Unable to unmarshal the buffer! Error: " + error.Error())
-	}
-
-	log.Println("Message = " + transmissionObject.GetMessage())
-	log.Println("Value = " + fmt.Sprintf("%f", transmissionObject.GetValue()))
-
-	transmissionObject.Message = "Echoed from Go: " + transmissionObject.Message
-	transmissionObject.Value = 2 * transmissionObject.GetValue()
-	message, error := proto.Marshal(transmissionObject)
-	if error != nil {
-		log.Panicln(
-			"Unable to marshall the object! Error: " + error.Error())
-	}
-	connection.Write(message)
 }
