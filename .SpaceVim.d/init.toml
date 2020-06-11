@@ -11,35 +11,48 @@
 # Disable statusline separator, if you want to use other value, please
 # install nerd fonts
   statusline_separator = "nil"
-  statusline_inactive_separator = "bar"
+  statusline_inactive_separator = "curve"
 # statusline_separator = "arrow"
 # statusline_inactive_separator = "arrow"
   enable_statusline_mode = true 
-  enable_statusline_display_mode = false
-  enable_statusline_bfpath = true
+  enable_statusline_display_mode = true 
   statusline_unicode_symbols = false
+  enable_statusline_bfpath = true
 
+  # left sections of statusline
   statusline_left_sections = [
-    'winnr',
-# 'filename',
-    'major mode',
-    'minor mode lighters',
-    'version control info'
-    ]
+     'winnr',
+     'major mode',
+#      'filename',
+     'fileformat',
+     'version control info',
+     'search status'
+  ]
+  # right sections of statusline
+  statusline_right_sections = [
+     'cursorpos',
+     'percentage',
+     'input method',
+     'date',
+     'time'
+  ]
 
   buffer_index_type = 4
-  windows_index_type = 3
+  windows_index_type = 4
 # default_indent = 4
 # expand_tab = false
   enable_tabline_filetype_icon = false 
+
 # Enable vim compatible mode, avoid changing origin vim key bindings
   vimcompatible = true
 
   filemanager = "nerdtree"
   filetree_direction = "left"
-  enable_vimfiler_gitstatus = true 
 
-  enable_neomake = false
+  bootstrap_before = "init#init"
+
+# enable_neomake = false
+# enable_ale = true
 
   bootstrap_before = "init#init"
 
@@ -236,6 +249,18 @@
 
 [[custom_plugins]]
   name = "bazelbuild/vim-bazel"
+  merged = 0
+
+[[custom_plugins]]
+  name = "scrooloose/nerdtree"
+  merged = 0
+
+[[custom_plugins]]
+  name = "Xuyuanp/nerdtree-git-plugin"
+  merged = 0
+
+[[custom_plugins]]
+  name = "jistr/vim-nerdtree-tabs"
   merged = 0
 
 [[custom_plugins]]
